@@ -4,6 +4,7 @@ class CreateActivities < ActiveRecord::Migration[6.0]
       t.integer :itinerary_id
       t.string :name
       t.string :address
+      t.integer :rating
       t.string :description
 
       t.timestamps

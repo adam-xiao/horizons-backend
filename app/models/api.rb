@@ -1,5 +1,6 @@
 class Api
 
+    #not used
     def self.placeFetch(term)
         cleanse = term.split.join("%20")
 
@@ -15,6 +16,14 @@ class Api
         url = "https://maps.googleapis.com/maps/api/place/autocomplete/json?input=#{cleanse}&key=#{ENV["GOOGLE_KEY"]}"
         response = HTTParty.get(url)
         
+        return response
+    end
+
+    def self.placeDetails(id)
+
+        url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=#{id}&fields=name,rating,formatted_address&key=#{ENV["GOOGLE_KEY"]}"
+        response = HTTParty.get(url)
+
         return response
     end
 
