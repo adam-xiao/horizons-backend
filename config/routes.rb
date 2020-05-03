@@ -14,12 +14,18 @@ Rails.application.routes.draw do
 
   get '/itinerary', to: 'itineraries#index'
   post '/itinerary', to: 'itineraries#create'
+  patch '/itinerary/:id', to: 'itineraries#update'
+  delete '/itinerary/:id', to: 'itineraries#destroy'
+
+
 
   get '/activity', to: 'activities#index'
   post '/activity', to: 'activities#create'
+  delete '/activity/:id', to: 'activities#destroy'
 
   get '/discover/:term', to: "api#placeAutoComplete"
 
   get '/activities/:id', to: "api#placeDetails"
+
 
 end

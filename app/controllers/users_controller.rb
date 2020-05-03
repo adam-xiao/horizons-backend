@@ -6,7 +6,9 @@ class UsersController < ApplicationController
   end
 
   def selfItin
-    render json: Itinerary.all.filter{|itin| itin.user_id == decoded_token}
+    myItin = Itinerary.all.filter{|itin| itin.user_id == decoded_token}
+    # ItinActiv = Activity.all.filter{ |activity| activity.itinerary_id == myItin.id }
+    render json: myItin
   end
 
   def create

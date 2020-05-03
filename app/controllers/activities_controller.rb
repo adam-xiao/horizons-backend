@@ -11,6 +11,11 @@ class ActivitiesController < ApplicationController
         redirect_to activity_path
     end    
 
+    def destroy
+        activity = Activity.find(params[:id])
+        activity.destroy
+    end
+
     private
 
     def activity_params

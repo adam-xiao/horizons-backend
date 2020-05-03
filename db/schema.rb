@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_190737) do
     t.date "start"
     t.date "end"
     t.string "description"
-    t.boolean "archived"
+    t.boolean "archived", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

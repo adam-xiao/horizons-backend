@@ -6,7 +6,7 @@ class CreateItineraries < ActiveRecord::Migration[6.0]
       t.date :start
       t.date :end
       t.string :description
-      t.boolean :archived
+      t.boolean :archived, :default => false
 
       t.timestamps
     end

@@ -5,24 +5,35 @@ class ItinerariesController < ApplicationController
     end
 
     def selfActivity
-        render json: Activity.all.filter{|activity| activity.itinerary_id == findActivity_params[:itinerary_id]}
+        myItin = Itinerary.all.filter{|itin| itin.user_id == decoded_token}
+        activities = myItin.map{ |itin| itin.activities }
+
+        activities.flatten!
+        
+        render json: activities
     end
-    # activity: findActivity_params[:itinerary_id]
+    
     def create
         itinerary = Itinerary.new(itinerary_params)
         itinerary.save
 
         redirect_to itinerary_path
-    end    
+    end
+
+    def update
+        itinerary = Itinerary.find(params[:id])
+        itinerary.update(itinerary_params)
+    end
+    
+    def destroy
+        itinerary = Itinerary.find(params[:id])
+        itinerary.destroy
+    end
 
     private
 
     def itinerary_params
-        params.require(:itinerary).permit(:user_id, :name, :description, :start, :end)
-    end
-
-    def findActivity_params
-        params.require(:activity).permit(:itinerary_id)
+        params.require(:itinerary).permit(:user_id, :name, :description, :start, :end, :archived)
     end
 
 end
