@@ -27,5 +27,7 @@ Rails.application.routes.draw do
 
   get '/activities/:id', to: "api#placeDetails"
 
+  get '/photos/:id', to: "api#placePhotos"
+
 
 end

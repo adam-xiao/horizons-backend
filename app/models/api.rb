@@ -21,7 +21,16 @@ class Api
 
     def self.placeDetails(id)
 
-        url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=#{id}&fields=name,rating,formatted_address&key=#{ENV["GOOGLE_KEY"]}"
+        url = "https://maps.googleapis.com/maps/api/place/details/json?place_id=#{id}&fields=name,rating,formatted_address,photo&key=#{ENV["GOOGLE_KEY"]}"
+        response = HTTParty.get(url)
+
+        return response
+    end
+
+
+    def self.placePhotos(ref)
+
+        url = "https://maps.googleapis.com/maps/api/place/photo?maxheight=200&photoreference=#{ref}&key=#{ENV["GOOGLE_KEY"]}"
         response = HTTParty.get(url)
 
         return response
